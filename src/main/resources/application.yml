@@ -5,7 +5,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/wjx
     username: root
-    password: helloworld
+    password: cjh050217
 
   main:
     allow-bean-definition-overriding: true
