@@ -1,3 +1,14 @@
+-- Create `users` table
+CREATE TABLE IF NOT EXISTS users (
+                                     id INT AUTO_INCREMENT PRIMARY KEY,
+                                     name VARCHAR(255) NOT NULL,
+                                     age SMALLINT,
+                                     gender SMALLINT,
+                                     phone VARCHAR(20),
+                                     password VARCHAR(255) NOT NULL,
+                                     email VARCHAR(255) UNIQUE NOT NULL
+);
+
 -- Create `surveys` table
 CREATE TABLE IF NOT EXISTS surveys (
                                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -28,19 +39,20 @@ CREATE TABLE IF NOT EXISTS options (
 -- Create `responses` table
 CREATE TABLE IF NOT EXISTS responses (
                                          id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                                         answer_text TEXT,
+                                         answer_text TEXT NOT NULL ,
                                          question_id BIGINT,
                                          FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE
 );
-
--- Create `users` table
-CREATE TABLE IF NOT EXISTS users (
-                                     id INT AUTO_INCREMENT PRIMARY KEY,
-                                     name VARCHAR(255) NOT NULL,
-                                     age SMALLINT,
-                                     gender SMALLINT,
-                                     phone VARCHAR(20),
-                                     password VARCHAR(255) NOT NULL,
-                                     email VARCHAR(255) UNIQUE NOT NULL
+create table if not exists surveys_state
+(
+    survey_id     bigint       not null,
+    id            int auto_increment
+        primary key,
+    receiveNumber int          not null,
+    state         varchar(255) null,
+    constraint surveys_state_pk
+        unique (survey_id),
+    constraint survey_id
+        foreign key (survey_id) references surveys (id)
 );
 
